@@ -147,6 +147,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .empty{text-align:center;padding:48px 20px;color:var(--text3);font-size:14px;line-height:1.6}
 .toast{background:#27500A;color:#C0DD97;padding:10px 20px;border-radius:20px;font-size:13px;font-weight:500;position:fixed;bottom:92px;left:50%;transform:translateX(-50%);opacity:0;transition:opacity .3s;pointer-events:none;z-index:999;white-space:nowrap}
 .toast.on{opacity:1}
+.modal-wrap{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;align-items:flex-end;justify-content:center}
+.modal-wrap.on{display:flex}
+.modal{background:var(--surface);border-radius:var(--radius) var(--radius) 0 0;padding:20px 20px 32px;width:100%;max-width:680px}
+.modal-title{font-size:16px;font-weight:600;margin-bottom:6px;color:var(--text)}
+.modal-sub{font-size:14px;color:var(--text2);margin-bottom:20px}
+.modal-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.modal-cancel{padding:13px;background:var(--surface2);color:var(--text);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:15px;font-weight:500;cursor:pointer}
+.modal-confirm{padding:13px;background:var(--rd);color:#fff;border:none;border-radius:var(--radius-sm);font-size:15px;font-weight:600;cursor:pointer}
 </style>
 </head>
 <body>
@@ -357,7 +365,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div class="f"><label>Evaluador <span class="req">*</span></label><input type="text" id="p-eval" placeholder="Nombre completo"></div>
       <div class="f"><label>Observaciones finales</label><textarea id="p-obs-fin" placeholder="Notas de cierre..."></textarea></div>
       <button class="btn-save" id="btn-p" onclick="saveP()">Guardar y enviar a Sheets</button>
-      <button class="btn-clear" onclick="clearScr('precompra')">Limpiar campos</button>
+      <button class="btn-clear" onclick="confirmClear('precompra')">Limpiar campos</button>
     </div>
   </div>
 </div>
@@ -468,7 +476,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       </div>
       <div class="f"><label>Observaciones finales</label><textarea id="r-obs-fin" placeholder="Notas de cierre de recepción..."></textarea></div>
       <button class="btn-save" id="btn-r" onclick="saveR()">Guardar y enviar a Sheets</button>
-      <button class="btn-clear" onclick="clearScr('recepcion')">Limpiar campos</button>
+      <button class="btn-clear" onclick="confirmClear('recepcion')">Limpiar campos</button>
     </div>
   </div>
 </div>
@@ -569,13 +577,23 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div class="f"><label>Responsable de cierre</label><input type="text" id="i-rcierre" placeholder="Nombre"></div>
       <div class="f"><label>Observaciones finales</label><textarea id="i-obs-fin" placeholder="Notas de cierre del caso..."></textarea></div>
       <button class="btn-save" id="btn-i" onclick="saveI()">Guardar y enviar a Sheets</button>
-      <button class="btn-clear" onclick="clearScr('individual')">Limpiar campos</button>
+      <button class="btn-clear" onclick="confirmClear('individual')">Limpiar campos</button>
     </div>
   </div>
 </div>
 
 </div>
 <div class="toast" id="toast"></div>
+<div class="modal-wrap" id="modal-wrap" onclick="closeModal(event)">
+  <div class="modal">
+    <div class="modal-title">¿Limpiar todos los campos?</div>
+    <div class="modal-sub">Se borrarán todos los datos ingresados en esta ficha. Esta acción no se puede deshacer.</div>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeModal()">Cancelar</button>
+      <button class="modal-confirm" id="modal-confirm-btn" onclick="doConfirmClear()">Sí, limpiar</button>
+    </div>
+  </div>
+</div>
 
 <script>
 var GAS='https://script.google.com/macros/s/AKfycbzDg7R_xGfNco6oBbZScW8kPyzhtytc3IrJ2fNfMIJAhzm-UN695rllW5GUF1zf9rzasg/exec';
@@ -761,6 +779,22 @@ function saveI(){
   recs.unshift(r);persist();updateCounts();clearScr('individual');sendToSheets(r,'btn-i');
 }
 
+var _pendingClear=null;
+function confirmClear(t){
+  _pendingClear=t;
+  document.getElementById("modal-wrap").classList.add("on");
+}
+function closeModal(e){
+  if(e&&e.target!==document.getElementById("modal-wrap"))return;
+  document.getElementById("modal-wrap").classList.remove("on");
+  _pendingClear=null;
+}
+function doConfirmClear(){
+  document.getElementById("modal-wrap").classList.remove("on");
+  if(_pendingClear)clearScr(_pendingClear);
+  _pendingClear=null;
+  toast("Campos limpiados");
+}
 function clearScr(t){
   var s=document.getElementById('scr-'+t);if(!s)return;
   s.querySelectorAll('input:not([type=radio]):not([type=checkbox]),textarea,select').forEach(function(e){e.value='';});
