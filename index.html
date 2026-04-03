@@ -853,11 +853,13 @@ function renderHome(){
     if(r.type==='rec'){badge='<span class="rbadge br">Recepción</span>';title='Lote '+r.lote;sub=(r.cantidad||'?')+' cab · '+(r.proveedor||'—')+(r.modulo?' · '+r.modulo:'');}
     if(r.type==='ind'){badge='<span class="rbadge bi">Caso individual</span>';title='Animal: '+(r.animal||'sin ID');sub='Lote '+(r.lote||'?')+(r.motivos?' · '+r.motivos.split(',')[0]:'')+(r.resultado?' · '+r.resultado:'');}
     var rl=r.riskLevel,pc=rl==='Alto'?'ph':rl==='Medio'?'pm':'pl',pt=rl||'';
-    return '<div class="rec-card" onclick="openDetail('"+r.id+"')" style="cursor:pointer"><div class="rec-top">'+badge+' '+stag+'<span class="rdate">'+fd(r.fecha)+'</span></div><div class="rtitle">'+title+'</div><div style="display:flex;align-items:center;gap:8px;margin-top:4px"><div class="rsub">'+sub+'</div>'+(pt?'<span class="risk-pill '+pc+'">'+pt+'</span>':'')+'</div></div>';
+    var cardId=r.id;
+    return '<div class="rec-card" onclick="openDetail(this.dataset.id)" data-id="'+cardId+'" style="cursor:pointer"><div class="rec-top">'+badge+' '+stag+'<span class="rdate">'+fd(r.fecha)+'</span></div><div class="rtitle">'+title+'</div><div style="display:flex;align-items:center;gap:8px;margin-top:4px"><div class="rsub">'+sub+'</div>'+(pt?'<span class="risk-pill '+pc+'">'+pt+'</span>':'')+'</div></div>';
   }).join('');
 }
 
-function openDetail(id){
+function openDetail(el){
+  var id=typeof el==='string'?el:(el.dataset?el.dataset.id:el);
   var r=recs.find(function(x){return x.id===id;});
   if(!r)return;
   var badge='',fields=[];
