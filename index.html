@@ -155,6 +155,21 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .modal-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .modal-cancel{padding:13px;background:var(--surface2);color:var(--text);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:15px;font-weight:500;cursor:pointer}
 .modal-confirm{padding:13px;background:var(--rd);color:#fff;border:none;border-radius:var(--radius-sm);font-size:15px;font-weight:600;cursor:pointer}
+.detail-wrap{display:none;position:fixed;inset:0;background:var(--bg);z-index:150;overflow-y:auto}
+.detail-wrap.on{display:block}
+.detail-topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 16px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
+.detail-back{background:none;border:none;font-size:15px;color:var(--g);font-weight:600;cursor:pointer;padding:4px 0}
+.detail-badge{font-size:11px;padding:3px 10px;border-radius:10px;font-weight:600;margin-left:4px}
+.detail-body{padding:16px}
+.detail-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px;overflow:hidden}
+.detail-section-title{padding:11px 14px;border-bottom:1px solid var(--border);font-size:13px;font-weight:600;color:var(--text);background:var(--surface2)}
+.detail-row{display:flex;padding:9px 14px;border-bottom:1px solid var(--border)}
+.detail-row:last-child{border-bottom:none}
+.detail-label{font-size:12px;color:var(--text2);font-weight:500;width:45%;flex-shrink:0}
+.detail-val{font-size:13px;color:var(--text);flex:1}
+.detail-val.empty{color:var(--text3);font-style:italic}
+.btn-delete{width:100%;padding:14px;background:var(--rl);color:var(--rd);border:1px solid var(--rd);border-radius:var(--radius-sm);font-size:15px;font-weight:600;cursor:pointer;margin-top:4px}
+.btn-delete:active{opacity:.8}
 </style>
 </head>
 <body>
@@ -595,8 +610,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   </div>
 </div>
 
+<div class="detail-wrap" id="detail-wrap">
+  <div class="detail-topbar">
+    <button class="detail-back" onclick="closeDetail()">← Volver</button>
+    <span id="detail-badge-wrap"></span>
+    <span id="detail-date" style="margin-left:auto;font-size:12px;color:var(--text2)"></span>
+  </div>
+  <div class="detail-body" id="detail-body"></div>
+</div>
+
 <script>
-var GAS='https://script.google.com/macros/s/AKfycbx_NcCaU45AmvARye50jQljCFfXwdt5ttH0BEAQnIn1qh8fbaMzODRHwVTV_r1ZwOHFMw/exec';
+var GAS='https://script.google.com/macros/s/AKfycbwljkdlqyxnaYOCIMdpbM2lbXfs6MSaDJS6-WCsB0IFeWAdwxEoFqEzBHVbZlZAne7OjA/exec';
 var recs=[],pending=[];
 try{var _r=localStorage.getItem('lj_recs');if(_r)recs=JSON.parse(_r);}catch(e){}
 try{var _p=localStorage.getItem('lj_pending');if(_p)pending=JSON.parse(_p);}catch(e){}
@@ -829,10 +853,123 @@ function renderHome(){
     if(r.type==='rec'){badge='<span class="rbadge br">Recepción</span>';title='Lote '+r.lote;sub=(r.cantidad||'?')+' cab · '+(r.proveedor||'—')+(r.modulo?' · '+r.modulo:'');}
     if(r.type==='ind'){badge='<span class="rbadge bi">Caso individual</span>';title='Animal: '+(r.animal||'sin ID');sub='Lote '+(r.lote||'?')+(r.motivos?' · '+r.motivos.split(',')[0]:'')+(r.resultado?' · '+r.resultado:'');}
     var rl=r.riskLevel,pc=rl==='Alto'?'ph':rl==='Medio'?'pm':'pl',pt=rl||'';
-    return '<div class="rec-card"><div class="rec-top">'+badge+' '+stag+'<span class="rdate">'+fd(r.fecha)+'</span></div><div class="rtitle">'+title+'</div><div style="display:flex;align-items:center;gap:8px;margin-top:4px"><div class="rsub">'+sub+'</div>'+(pt?'<span class="risk-pill '+pc+'">'+pt+'</span>':'')+'</div></div>';
+    return '<div class="rec-card" onclick="openDetail('"+r.id+"')" style="cursor:pointer"><div class="rec-top">'+badge+' '+stag+'<span class="rdate">'+fd(r.fecha)+'</span></div><div class="rtitle">'+title+'</div><div style="display:flex;align-items:center;gap:8px;margin-top:4px"><div class="rsub">'+sub+'</div>'+(pt?'<span class="risk-pill '+pc+'">'+pt+'</span>':'')+'</div></div>';
   }).join('');
 }
 
+function openDetail(id){
+  var r=recs.find(function(x){return x.id===id;});
+  if(!r)return;
+  var badge='',fields=[];
+  if(r.type==='pre'){
+    badge='<span class="detail-badge bp">Precompra</span>';
+    fields=[
+      {s:'Identificación del lote',rows:[
+        ['Proveedor',r.proveedor],['Origen',r.origen],['Cantidad',r.cantidad?r.cantidad+' cabezas':''],
+        ['Peso estimado',r.peso?r.peso+' kg':''],['Tipo racial',r.racial],['Consignataria',r.consig],
+        ['Score de seguridad',r.scoreNum!=null?r.scoreNum+' / 100':''],['Decisión',r.decision]
+      ]},
+      {s:'Condición general',rows:[
+        ['Uniformidad',r.uniformidad],['Estado corporal',r.cc],['Destete',r.destete],
+        ['Fecha destete',fd(r.fdestete)],['Mes parición',r.paricion],
+        ['Animales chicos',r.chicos],['Problemas visibles',r.prob],['Garrapata visible',r.garra],
+        ['Observaciones',r.obsCond]
+      ]},
+      {s:'Antecedentes sanitarios',rows:[
+        ['Clostridial',r.clos],['N° dosis',r.closD],['Producto',r.closP],
+        ['Carbunclo',r.carb],['Garrapata en origen',r.garrProb],['Nivel garrapata',r.garrNivel],
+        ['Observaciones',r.obsSan]
+      ]},
+      {s:'Evaluación final',rows:[
+        ['Riesgo sanitario',r.rSan],['Riesgo información',r.rInfo],['Riesgo condición',r.rCond],
+        ['Próximo paso',r.proximo],['Evaluador',r.evaluador],['Observaciones',r.obsFin]
+      ]}
+    ];
+  } else if(r.type==='rec'){
+    badge='<span class="detail-badge br">Recepción</span>';
+    fields=[
+      {s:'Identificación',rows:[
+        ['Lote / cohorte',r.lote],['Proveedor',r.proveedor],['Origen',r.origen],
+        ['Cantidad',r.cantidad?r.cantidad+' cabezas':''],['Peso promedio',r.peso?r.peso+' kg':''],
+        ['Hora llegada',r.hora],['Traslado',r.traslado],['Módulo',r.modulo],['Responsable',r.responsable]
+      ]},
+      {s:'Estado al arribo',rows:[
+        ['Uniformidad',r.uniformidad],['Estado corporal',r.cc],
+        ['Problemas observados',r.problemas],['Cant. con problemas',r.cantProb?r.cantProb+' cab':''],
+        ['Observaciones',r.obsArr]
+      ]},
+      {s:'Evaluación',rows:[
+        ['Riesgo sanitario',r.rSan],['Riesgo estrés',r.rEstres],['Riesgo parasitismo',r.rPara],
+        ['Sanidad previa',r.sanPrev],['Pendientes',r.pendientes],['Próximos pasos',r.pasos],
+        ['Observaciones',r.obsFin]
+      ]}
+    ];
+  } else {
+    badge='<span class="detail-badge bi">Caso individual</span>';
+    fields=[
+      {s:'Identificación',rows:[
+        ['Animal',r.animal],['Lote',r.lote],['Módulo / potrero',r.potrero],
+        ['Días desde ingreso',r.dias],['Peso estimado',r.peso?r.peso+' kg':''],['Responsable',r.responsable]
+      ]},
+      {s:'Hallazgo inicial',rows:[
+        ['Motivos',r.motivos],['Estado',r.estado],['Apartado',r.apartado],
+        ['Temperatura',r.temp?r.temp+' °C':''],['Observaciones',r.obsIni]
+      ]},
+      {s:'Tratamiento',rows:[
+        ['¿Se trató?',r.tratado],['Fecha tratamiento',fd(r.fechaTrat)],
+        ['Producto / dosis',r.producto],['Responsable',r.respTrat],
+        ['Evolución',r.evolucion],['Observaciones',r.obsSeg]
+      ]},
+      {s:'Resultado final',rows:[
+        ['Estado final',r.resultado],['Fecha cierre',fd(r.fechaCierre)],
+        ['Diagnóstico',r.diagnostico],['Responsable cierre',r.respCierre],['Observaciones',r.obsFin]
+      ]}
+    ];
+  }
+  var html=fields.map(function(sec){
+    var rows=sec.rows.map(function(row){
+      var val=row[1]||'';
+      return '<div class="detail-row"><div class="detail-label">'+row[0]+'</div><div class="detail-val'+(val?'':' empty')+'">'+( val||'—')+'</div></div>';
+    }).join('');
+    return '<div class="detail-section"><div class="detail-section-title">'+sec.s+'</div>'+rows+'</div>';
+  }).join('');
+  html+='<div style="margin-top:4px"><button class="btn-delete" onclick="confirmDelete(\''+id+'\')">Eliminar este registro</button></div>';
+  document.getElementById('detail-badge-wrap').innerHTML=badge;
+  document.getElementById('detail-date').textContent=fd(r.fecha);
+  document.getElementById('detail-body').innerHTML=html;
+  document.getElementById('detail-wrap').classList.add('on');
+}
+function closeDetail(){document.getElementById('detail-wrap').classList.remove('on');}
+var _pendingDelete=null;
+function confirmDelete(id){
+  _pendingDelete=id;
+  var mw=document.getElementById('modal-wrap');
+  var mt=mw.querySelector('.modal-title');
+  var ms=mw.querySelector('.modal-sub');
+  var mc=mw.querySelector('.modal-confirm');
+  mt.textContent='¿Eliminar este registro?';
+  ms.textContent='El registro se eliminará de la app y quedará marcado como eliminado en el Sheet.';
+  mc.textContent='Sí, eliminar';
+  mc.onclick=doConfirmDelete;
+  mc.style.background='var(--rd)';
+  mw.classList.add('on');
+}
+function doConfirmDelete(){
+  document.getElementById('modal-wrap').classList.remove('on');
+  if(!_pendingDelete)return;
+  var id=_pendingDelete;_pendingDelete=null;
+  var rec=recs.find(function(r){return r.id===id;});
+  if(rec){
+    fetch(GAS,{method:'POST',mode:'no-cors',body:JSON.stringify({id:id,type:rec.type,_deleted:true,ts:new Date().toISOString()})}).catch(function(){});
+  }
+  recs=recs.filter(function(r){return r.id!==id;});
+  pending=pending.filter(function(p){return p!==id;});
+  persist();updateCounts();renderHome();updatePending();
+  closeDetail();
+  toast('Registro eliminado');
+  var mc=document.getElementById('modal-confirm-btn');
+  if(mc){mc.textContent='Sí, limpiar';mc.onclick=doConfirmClear;mc.style.background='var(--rd)';}
+}
 function exportCSV(){
   if(!recs.length){toast('Sin registros para exportar');return;}
   var cols=Array.from(new Set(recs.flatMap(Object.keys)));
