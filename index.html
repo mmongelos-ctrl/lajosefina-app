@@ -9,8 +9,7 @@
 <meta name="theme-color" content="#3B6D11">
 <title>La Josefina — Fichas</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;cursor:pointer}
-input,textarea,select{cursor:text}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
   --g:#3B6D11;--gl:#EAF3DE;--gm:#639922;--gd:#27500A;
   --am:#BA7517;--al:#FAEEDA;--ad:#633806;
@@ -21,12 +20,7 @@ input,textarea,select{cursor:text}
   --radius:10px;--radius-sm:7px;
 }
 @media(prefers-color-scheme:dark){
-  :root{
-    --bg:#1A1A18;--surface:#242422;--surface2:#2E2E2C;
-    --border:#3A3A38;--border2:#4A4A48;
-    --text:#F0EFE9;--text2:#A0A09C;--text3:#6B6B67;
-    --gl:#1A2E10;--al:#2E2010;--rl:#2E1010;
-  }
+  :root{--bg:#1A1A18;--surface:#242422;--surface2:#2E2E2C;--border:#3A3A38;--border2:#4A4A48;--text:#F0EFE9;--text2:#A0A09C;--text3:#6B6B67;--gl:#1A2E10;--al:#2E2010;--rl:#2E1010;}
 }
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:16px;line-height:1.5}
 .app{max-width:680px;margin:0 auto;padding-bottom:80px}
@@ -41,92 +35,94 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 .sync-label{font-size:11px;color:var(--text2)}
 .nav{background:var(--surface);border-bottom:1px solid var(--border);display:flex;position:sticky;top:57px;z-index:99}
-.nb{flex:1;padding:10px 4px 9px;font-size:11px;font-weight:500;color:var(--text2);background:none;border:none;border-bottom:2.5px solid transparent;text-align:center;line-height:1.3;transition:color .15s,border-color .15s}
+.nb{flex:1;padding:10px 4px 9px;font-size:11px;font-weight:500;color:var(--text2);background:none;border:none;border-bottom:2.5px solid transparent;cursor:pointer;text-align:center;line-height:1.3}
 .nb.on{color:var(--g);border-bottom-color:var(--g)}
 .nb-icon{display:block;font-size:18px;margin-bottom:2px}
 .scr{display:none;padding:14px 14px 0}
 .scr.on{display:block}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px;overflow:hidden}
-.ch{padding:13px 15px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.ch{padding:13px 15px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;cursor:pointer}
 .ch h3{font-size:14px;font-weight:600;flex:1;color:var(--text)}
 .ch-badge{font-size:10px;padding:3px 8px;border-radius:20px;background:var(--surface2);color:var(--text2);font-weight:500}
-.ch-tog{font-size:12px;color:var(--text3);transition:transform .2s;margin-left:2px}
+.ch-tog{font-size:12px;color:var(--text3);transition:transform .2s}
 .ch-tog.o{transform:rotate(180deg)}
 .cb{padding:14px 15px;display:none}
 .cb.o{display:block}
 .f{margin-bottom:14px}
 .f:last-child{margin-bottom:0}
-.f label{display:block;font-size:12px;color:var(--text2);margin-bottom:5px;font-weight:500;letter-spacing:.01em}
+.f label{display:block;font-size:12px;color:var(--text2);margin-bottom:5px;font-weight:500}
 .req{color:var(--rd)}
-.f input,.f select,.f textarea{
-  width:100%;background:var(--surface2);border:1px solid var(--border);
-  border-radius:var(--radius-sm);padding:10px 12px;font-size:15px;
-  color:var(--text);font-family:inherit;transition:border-color .15s;
-  -webkit-appearance:none;appearance:none;cursor:text;
-}
+.f input,.f select,.f textarea{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;font-size:15px;color:var(--text);font-family:inherit;-webkit-appearance:none;appearance:none}
 .f input:focus,.f select:focus,.f textarea:focus{outline:none;border-color:var(--gm)}
 .f textarea{resize:vertical;min-height:70px}
-.f select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6B67' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px;cursor:pointer}
+.f select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6B67' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @media(max-width:380px){.row2{grid-template-columns:1fr}}
 
-/* RADIO / CHECKBOX — fix táctil iOS */
-.rg{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
-.rg label{
-  display:flex;align-items:center;gap:7px;
-  padding:10px 14px;background:var(--surface2);
-  border:1px solid var(--border);border-radius:var(--radius-sm);
-  font-size:14px;
-  user-select:none;
-  min-height:44px;
-  cursor:pointer;
-  -webkit-user-select:none;
+/* CUSTOM TOGGLE BUTTONS — reemplazo de radio/checkbox */
+.opts{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.opt{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:10px 14px;min-height:44px;
+  background:var(--surface2);border:1.5px solid var(--border);
+  border-radius:var(--radius-sm);font-size:14px;color:var(--text2);
+  cursor:pointer;user-select:none;-webkit-user-select:none;
+  transition:all .15s;font-family:inherit;
+  -webkit-appearance:none;appearance:none;
 }
-.rg label:active{opacity:.7}
-.rg label *{pointer-events:none}
-.rg input[type=radio],.rg input[type=checkbox]{
-  width:20px;height:20px;
-  accent-color:var(--g);
-  flex-shrink:0;
-  pointer-events:none;
-  cursor:pointer;
-}
-.opt-v{border-color:#639922!important;background:var(--gl)!important;color:#27500A!important}
-.opt-a{border-color:#BA7517!important;background:var(--al)!important;color:#633806!important}
-.opt-r{border-color:#A32D2D!important;background:var(--rl)!important;color:#791F1F!important}
+.opt:active{opacity:.7}
+.opt .dot{width:18px;height:18px;border-radius:50%;border:2px solid var(--border2);background:var(--surface);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.opt .chk{width:18px;height:18px;border-radius:4px;border:2px solid var(--border2);background:var(--surface);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.opt .dot-inner{width:8px;height:8px;border-radius:50%;background:transparent;transition:background .15s}
+.opt .chk-inner{font-size:11px;color:transparent;font-weight:700;line-height:1;transition:color .15s}
 
+/* estados seleccionados */
+.opt.sel-n{border-color:var(--gm);background:var(--gl);color:#27500A}
+.opt.sel-n .dot{border-color:var(--gm);background:var(--gm)}
+.opt.sel-n .dot-inner{background:#fff}
+.opt.sel-n .chk{border-color:var(--gm);background:var(--gm)}
+.opt.sel-n .chk-inner{color:#fff}
+
+.opt.sel-a{border-color:var(--am);background:var(--al);color:#633806}
+.opt.sel-a .dot{border-color:var(--am);background:var(--am)}
+.opt.sel-a .dot-inner{background:#fff}
+.opt.sel-a .chk{border-color:var(--am);background:var(--am)}
+.opt.sel-a .chk-inner{color:#fff}
+
+.opt.sel-r{border-color:var(--rd);background:var(--rl);color:#791F1F}
+.opt.sel-r .dot{border-color:var(--rd);background:var(--rd)}
+.opt.sel-r .dot-inner{background:#fff}
+.opt.sel-r .chk{border-color:var(--rd);background:var(--rd)}
+.opt.sel-r .chk-inner{color:#fff}
+
+/* score */
 .score-panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:15px;margin-bottom:10px}
 .score-top{display:flex;align-items:center;gap:12px;margin-bottom:10px}
 .score-num{font-size:28px;font-weight:700;color:var(--text);line-height:1}
-.score-verdict{font-size:13px;padding:5px 13px;border-radius:20px;font-weight:600}
+.score-verdict{font-size:13px;padding:5px 13px;border-radius:20px;font-weight:600;display:none}
 .sv-v{background:var(--gl);color:#27500A}
 .sv-a{background:var(--al);color:#633806}
 .sv-r{background:var(--rl);color:#791F1F}
 .score-bar-wrap{height:8px;background:var(--surface2);border-radius:4px;overflow:hidden;margin-bottom:10px}
 .score-bar{height:100%;border-radius:4px;transition:width .5s,background .5s;width:0%}
 .score-hint{font-size:12px;color:var(--text2);margin-bottom:10px}
-.score-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.score-grid{display:none;grid-template-columns:1fr 1fr 1fr;gap:6px}
 .score-item{background:var(--surface2);border-radius:var(--radius-sm);padding:8px 10px}
 .score-item-label{font-size:11px;color:var(--text2);margin-bottom:2px}
 .score-item-val{font-size:13px;font-weight:600;color:var(--text)}
+
 .hist-banner{background:var(--gl);border:1px solid #97C459;border-radius:var(--radius-sm);padding:11px 13px;margin-bottom:10px;font-size:13px;color:#27500A;display:none}
 .hist-banner strong{font-weight:600}
 .hist-pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:10px;font-weight:600;margin:3px 3px 0 0}
-.hp-v{background:var(--gl);color:#27500A}
-.hp-a{background:var(--al);color:#633806}
-.hp-r{background:var(--rl);color:#791F1F}
+.hp-v{background:var(--gl);color:#27500A}.hp-a{background:var(--al);color:#633806}.hp-r{background:var(--rl);color:#791F1F}
 .offline-banner{background:var(--al);border:1px solid #EF9F27;border-radius:var(--radius-sm);padding:10px 13px;margin-bottom:10px;font-size:13px;color:#633806;display:none}
-.btn-save{
-  width:100%;padding:14px;background:var(--g);color:#fff;
-  border:none;border-radius:var(--radius-sm);font-size:15px;
-  font-weight:600;margin-top:10px;
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  transition:opacity .15s;cursor:pointer;
-}
+
+.btn-save{width:100%;padding:14px;background:var(--g);color:#fff;border:none;border-radius:var(--radius-sm);font-size:15px;font-weight:600;cursor:pointer;margin-top:10px;transition:opacity .15s}
 .btn-save:active{opacity:.85}
 .btn-save:disabled{opacity:.55;cursor:not-allowed}
-.btn-clear{width:100%;padding:12px;background:none;color:var(--text2);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:14px;font-weight:500;margin-top:8px;cursor:pointer;transition:all .15s}
+.btn-clear{width:100%;padding:12px;background:none;color:var(--text2);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:14px;font-weight:500;margin-top:8px;cursor:pointer}
 .btn-clear:active{background:var(--surface2)}
+
 .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:4px 0 14px}
 .sb{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px 8px;text-align:center}
 .sb-n{font-size:24px;font-weight:700;color:var(--text)}
@@ -135,25 +131,19 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .home-hdr h2{font-size:16px;font-weight:600}
 .btn-sec{padding:9px 14px;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;font-weight:500;cursor:pointer}
 .filter-row{display:flex;gap:6px;margin-bottom:12px;overflow-x:auto;padding-bottom:2px}
-.fb{padding:6px 14px;border-radius:20px;font-size:12px;font-weight:500;border:1px solid var(--border);background:var(--surface2);color:var(--text2);white-space:nowrap;flex-shrink:0;transition:all .15s;cursor:pointer}
+.fb{padding:6px 14px;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid var(--border);background:var(--surface2);color:var(--text2);white-space:nowrap;flex-shrink:0}
 .fb.on{background:var(--g);color:#fff;border-color:var(--g)}
 .pending-tag{font-size:10px;padding:2px 7px;border-radius:10px;background:var(--al);color:#633806;font-weight:600;margin-left:7px;display:none}
 .rec-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;margin-bottom:8px}
 .rec-top{display:flex;align-items:center;gap:7px;margin-bottom:6px;flex-wrap:wrap}
 .rbadge{font-size:10px;padding:3px 8px;border-radius:10px;font-weight:600}
-.bp{background:#E1F5EE;color:#085041}
-.br{background:#E6F1FB;color:#0C447C}
-.bi{background:var(--al);color:#633806}
+.bp{background:#E1F5EE;color:#085041}.br{background:#E6F1FB;color:#0C447C}.bi{background:var(--al);color:#633806}
 .rdate{font-size:11px;color:var(--text2);margin-left:auto}
-.sync-tag{font-size:10px;color:var(--text3)}
-.sync-tag.ok{color:var(--gm)}
-.sync-tag.pend{color:var(--am)}
+.sync-tag{font-size:10px;color:var(--text3)}.sync-tag.ok{color:var(--gm)}.sync-tag.pend{color:var(--am)}
 .rtitle{font-size:15px;font-weight:600;color:var(--text)}
 .rsub{font-size:12px;color:var(--text2);margin-top:3px}
 .risk-pill{font-size:11px;padding:3px 9px;border-radius:10px;font-weight:600;margin-left:auto;flex-shrink:0}
-.pl{background:var(--gl);color:#27500A}
-.pm{background:var(--al);color:#633806}
-.ph{background:var(--rl);color:#791F1F}
+.pl{background:var(--gl);color:#27500A}.pm{background:var(--al);color:#633806}.ph{background:var(--rl);color:#791F1F}
 .empty{text-align:center;padding:48px 20px;color:var(--text3);font-size:14px;line-height:1.6}
 .toast{background:#27500A;color:#C0DD97;padding:10px 20px;border-radius:20px;font-size:13px;font-weight:500;position:fixed;bottom:92px;left:50%;transform:translateX(-50%);opacity:0;transition:opacity .3s;pointer-events:none;z-index:999;white-space:nowrap}
 .toast.on{opacity:1}
@@ -164,14 +154,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 <div class="topbar">
   <div class="logo">LJ</div>
-  <div>
-    <div class="topbar-title">La Josefina</div>
-    <div class="topbar-sub">Vakaru S.A.</div>
-  </div>
-  <div class="sync-wrap">
-    <div class="sync-dot" id="sdot"></div>
-    <span class="sync-label" id="slabel">Conectado</span>
-  </div>
+  <div><div class="topbar-title">La Josefina</div><div class="topbar-sub">Vakaru S.A.</div></div>
+  <div class="sync-wrap"><div class="sync-dot" id="sdot"></div><span class="sync-label" id="slabel">Conectado</span></div>
 </div>
 
 <div class="nav">
@@ -208,10 +192,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div class="score-hint">Score de seguridad — se actualiza en tiempo real</div>
     <div class="score-top">
       <div class="score-num" id="snum">—</div>
-      <div class="score-verdict" id="sverdict" style="display:none">—</div>
+      <div class="score-verdict" id="sverdict">—</div>
     </div>
     <div class="score-bar-wrap"><div class="score-bar" id="sbar"></div></div>
-    <div class="score-grid" id="sgrid" style="display:none">
+    <div class="score-grid" id="sgrid">
       <div class="score-item"><div class="score-item-label">Sanitario</div><div class="score-item-val" id="sd-san">—</div></div>
       <div class="score-item"><div class="score-item-label">Condición</div><div class="score-item-val" id="sd-cond">—</div></div>
       <div class="score-item"><div class="score-item-label">Información</div><div class="score-item-val" id="sd-info">—</div></div>
@@ -221,6 +205,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     </div>
   </div>
   <div class="hist-banner" id="hist-banner"></div>
+
   <div class="card">
     <div class="ch" onclick="tog(this)"><h3>1. Identificación del lote</h3><span class="ch-badge">obligatorio</span><span class="ch-tog o">▾</span></div>
     <div class="cb o">
@@ -237,27 +222,28 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div class="f"><label>Consignataria</label><input type="text" id="p-consig" placeholder="Opcional"></div>
     </div>
   </div>
+
   <div class="card">
     <div class="ch" onclick="tog(this)"><h3>2. Condición general declarada</h3><span class="ch-tog">▾</span></div>
     <div class="cb">
       <div class="f"><label>Uniformidad del lote <span class="req">*</span></label>
-        <div class="rg">
-          <label class="opt-v"><input type="radio" name="p-uni" value="Alta" onchange="calcScore()"> Alta</label>
-          <label class="opt-a"><input type="radio" name="p-uni" value="Media" onchange="calcScore()"> Media</label>
-          <label class="opt-r"><input type="radio" name="p-uni" value="Baja" onchange="calcScore()"> Baja</label>
+        <div class="opts" data-group="p-uni" data-type="radio">
+          <button class="opt" data-val="Alta" data-color="n" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Alta</button>
+          <button class="opt" data-val="Media" data-color="a" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Media</button>
+          <button class="opt" data-val="Baja" data-color="r" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Baja</button>
         </div>
       </div>
       <div class="f"><label>Estado corporal <span class="req">*</span></label>
-        <div class="rg">
-          <label class="opt-v"><input type="radio" name="p-cc" value="Bueno" onchange="calcScore()"> Bueno</label>
-          <label class="opt-a"><input type="radio" name="p-cc" value="Regular" onchange="calcScore()"> Regular</label>
-          <label class="opt-r"><input type="radio" name="p-cc" value="Malo" onchange="calcScore()"> Malo</label>
+        <div class="opts" data-group="p-cc" data-type="radio">
+          <button class="opt" data-val="Bueno" data-color="n" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Bueno</button>
+          <button class="opt" data-val="Regular" data-color="a" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Regular</button>
+          <button class="opt" data-val="Malo" data-color="r" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Malo</button>
         </div>
       </div>
       <div class="f"><label>Situación de destete</label>
-        <div class="rg">
-          <label><input type="radio" name="p-dest" value="Destetado"> Destetado</label>
-          <label><input type="radio" name="p-dest" value="A destetar"> A destetar al retirar</label>
+        <div class="opts" data-group="p-dest" data-type="radio">
+          <button class="opt" data-val="Destetado" data-color="n" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Destetado</button>
+          <button class="opt" data-val="A destetar" data-color="n" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>A destetar al retirar</button>
         </div>
       </div>
       <div class="row2">
@@ -265,36 +251,37 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         <div class="f"><label>Mes estimado parición</label><input type="text" id="p-paricion" placeholder="ej. Septiembre"></div>
       </div>
       <div class="f"><label>¿Animales chicos o atrasados?</label>
-        <div class="rg">
-          <label><input type="radio" name="p-chicos" value="Si" onchange="calcScore()"> Sí</label>
-          <label><input type="radio" name="p-chicos" value="No" onchange="calcScore()"> No</label>
+        <div class="opts" data-group="p-chicos" data-type="radio">
+          <button class="opt" data-val="Si" data-color="a" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Sí</button>
+          <button class="opt" data-val="No" data-color="n" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>No</button>
         </div>
       </div>
       <div class="f"><label>¿Animales con problemas visibles?</label>
-        <div class="rg">
-          <label><input type="radio" name="p-prob" value="Si" onchange="calcScore()"> Sí</label>
-          <label><input type="radio" name="p-prob" value="No" onchange="calcScore()"> No</label>
-          <label><input type="radio" name="p-prob" value="Ni"> No informado</label>
+        <div class="opts" data-group="p-prob" data-type="radio">
+          <button class="opt" data-val="Si" data-color="r" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Sí</button>
+          <button class="opt" data-val="No" data-color="n" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>No</button>
+          <button class="opt" data-val="Ni" data-color="a" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>No informado</button>
         </div>
       </div>
       <div class="f"><label>¿Garrapatas / ectoparásitos visibles?</label>
-        <div class="rg">
-          <label><input type="radio" name="p-garra" value="Si" onchange="calcScore()"> Sí</label>
-          <label><input type="radio" name="p-garra" value="No" onchange="calcScore()"> No</label>
-          <label><input type="radio" name="p-garra" value="Ni"> No informado</label>
+        <div class="opts" data-group="p-garra" data-type="radio">
+          <button class="opt" data-val="Si" data-color="r" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Sí</button>
+          <button class="opt" data-val="No" data-color="n" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>No</button>
+          <button class="opt" data-val="Ni" data-color="a" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>No informado</button>
         </div>
       </div>
       <div class="f"><label>Observaciones generales</label><textarea id="p-obs-cond" placeholder="Notas sobre condición del lote..."></textarea></div>
     </div>
   </div>
+
   <div class="card">
     <div class="ch" onclick="tog(this)"><h3>3. Antecedentes sanitarios</h3><span class="ch-tog">▾</span></div>
     <div class="cb">
       <div class="f"><label>¿Vacunación clostridial?</label>
-        <div class="rg">
-          <label><input type="radio" name="p-clos" value="Si" onchange="calcScore()"> Sí</label>
-          <label><input type="radio" name="p-clos" value="No" onchange="calcScore()"> No</label>
-          <label><input type="radio" name="p-clos" value="Ni" onchange="calcScore()"> No informado</label>
+        <div class="opts" data-group="p-clos" data-type="radio">
+          <button class="opt" data-val="Si" data-color="n" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Sí</button>
+          <button class="opt" data-val="No" data-color="r" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>No</button>
+          <button class="opt" data-val="Ni" data-color="a" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>No informado</button>
         </div>
       </div>
       <div class="row2">
@@ -302,59 +289,60 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         <div class="f"><label>Producto clostridial</label><input type="text" id="p-clos-p" placeholder="Nombre comercial"></div>
       </div>
       <div class="f"><label>¿Vacunación carbunclo bacteridiano?</label>
-        <div class="rg">
-          <label><input type="radio" name="p-carb" value="Si" onchange="calcScore()"> Sí</label>
-          <label><input type="radio" name="p-carb" value="No" onchange="calcScore()"> No</label>
-          <label><input type="radio" name="p-carb" value="Ni" onchange="calcScore()"> No informado</label>
+        <div class="opts" data-group="p-carb" data-type="radio">
+          <button class="opt" data-val="Si" data-color="n" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Sí</button>
+          <button class="opt" data-val="No" data-color="r" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>No</button>
+          <button class="opt" data-val="Ni" data-color="a" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>No informado</button>
         </div>
       </div>
       <div class="f"><label>¿Garrapata es problema en origen?</label>
-        <div class="rg">
-          <label><input type="radio" name="p-gp" value="Si" onchange="calcScore()"> Sí</label>
-          <label><input type="radio" name="p-gp" value="No" onchange="calcScore()"> No</label>
-          <label><input type="radio" name="p-gp" value="Ni" onchange="calcScore()"> No informado</label>
+        <div class="opts" data-group="p-gp" data-type="radio">
+          <button class="opt" data-val="Si" data-color="r" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Sí</button>
+          <button class="opt" data-val="No" data-color="n" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>No</button>
+          <button class="opt" data-val="Ni" data-color="a" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>No informado</button>
         </div>
       </div>
       <div class="f"><label>Nivel garrapata en origen</label>
-        <div class="rg">
-          <label class="opt-v"><input type="radio" name="p-gn" value="Bajo" onchange="calcScore()"> Bajo</label>
-          <label class="opt-a"><input type="radio" name="p-gn" value="Medio" onchange="calcScore()"> Medio</label>
-          <label class="opt-r"><input type="radio" name="p-gn" value="Alto" onchange="calcScore()"> Alto</label>
-          <label><input type="radio" name="p-gn" value="Ni" onchange="calcScore()"> No informado</label>
+        <div class="opts" data-group="p-gn" data-type="radio">
+          <button class="opt" data-val="Bajo" data-color="n" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Bajo</button>
+          <button class="opt" data-val="Medio" data-color="a" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Medio</button>
+          <button class="opt" data-val="Alto" data-color="r" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Alto</button>
+          <button class="opt" data-val="Ni" data-color="a" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>No informado</button>
         </div>
       </div>
       <div class="f"><label>Observaciones sanitarias</label><textarea id="p-obs-san" placeholder="Otras vacunas, tratamientos, historia..."></textarea></div>
     </div>
   </div>
+
   <div class="card">
     <div class="ch" onclick="tog(this)"><h3>4. Evaluación final</h3><span class="ch-badge">obligatorio</span><span class="ch-tog">▾</span></div>
     <div class="cb">
       <div class="f"><label>Riesgo sanitario <span class="req">*</span></label>
-        <div class="rg">
-          <label class="opt-v"><input type="radio" name="p-rs" value="Bajo" onchange="calcScore()"> Bajo</label>
-          <label class="opt-a"><input type="radio" name="p-rs" value="Medio" onchange="calcScore()"> Medio</label>
-          <label class="opt-r"><input type="radio" name="p-rs" value="Alto" onchange="calcScore()"> Alto</label>
+        <div class="opts" data-group="p-rs" data-type="radio">
+          <button class="opt" data-val="Bajo" data-color="n" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Bajo</button>
+          <button class="opt" data-val="Medio" data-color="a" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Medio</button>
+          <button class="opt" data-val="Alto" data-color="r" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Alto</button>
         </div>
       </div>
       <div class="f"><label>Riesgo por falta de información <span class="req">*</span></label>
-        <div class="rg">
-          <label class="opt-v"><input type="radio" name="p-ri" value="Bajo" onchange="calcScore()"> Bajo</label>
-          <label class="opt-a"><input type="radio" name="p-ri" value="Medio" onchange="calcScore()"> Medio</label>
-          <label class="opt-r"><input type="radio" name="p-ri" value="Alto" onchange="calcScore()"> Alto</label>
+        <div class="opts" data-group="p-ri" data-type="radio">
+          <button class="opt" data-val="Bajo" data-color="n" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Bajo</button>
+          <button class="opt" data-val="Medio" data-color="a" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Medio</button>
+          <button class="opt" data-val="Alto" data-color="r" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Alto</button>
         </div>
       </div>
       <div class="f"><label>Riesgo por condición del lote <span class="req">*</span></label>
-        <div class="rg">
-          <label class="opt-v"><input type="radio" name="p-rc" value="Bajo" onchange="calcScore()"> Bajo</label>
-          <label class="opt-a"><input type="radio" name="p-rc" value="Medio" onchange="calcScore()"> Medio</label>
-          <label class="opt-r"><input type="radio" name="p-rc" value="Alto" onchange="calcScore()"> Alto</label>
+        <div class="opts" data-group="p-rc" data-type="radio">
+          <button class="opt" data-val="Bajo" data-color="n" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Bajo</button>
+          <button class="opt" data-val="Medio" data-color="a" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Medio</button>
+          <button class="opt" data-val="Alto" data-color="r" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Alto</button>
         </div>
       </div>
       <div class="f"><label>Decisión preliminar <span class="req">*</span></label>
-        <div class="rg">
-          <label class="opt-v"><input type="radio" name="p-dec" value="Apto"> Apto para compra</label>
-          <label class="opt-a"><input type="radio" name="p-dec" value="Apto con cond."> Apto con condiciones</label>
-          <label class="opt-r"><input type="radio" name="p-dec" value="No recomendado"> No recomendado</label>
+        <div class="opts" data-group="p-dec" data-type="radio">
+          <button class="opt" data-val="Apto" data-color="n" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Apto para compra</button>
+          <button class="opt" data-val="Apto con cond." data-color="a" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Apto con condiciones</button>
+          <button class="opt" data-val="No recomendado" data-color="r" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>No recomendado</button>
         </div>
       </div>
       <div class="f"><label>Próximo paso <span class="req">*</span></label>
@@ -369,7 +357,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div class="f"><label>Evaluador <span class="req">*</span></label><input type="text" id="p-eval" placeholder="Nombre completo"></div>
       <div class="f"><label>Observaciones finales</label><textarea id="p-obs-fin" placeholder="Notas de cierre..."></textarea></div>
       <button class="btn-save" id="btn-p" onclick="saveP()">Guardar y enviar a Sheets</button>
-      <button class="btn-clear" onclick="resetScr('precompra');calcScore()">Limpiar campos</button>
+      <button class="btn-clear" onclick="clearScr('precompra')">Limpiar campos</button>
     </div>
   </div>
 </div>
@@ -401,27 +389,27 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div class="ch" onclick="tog(this)"><h3>2. Estado al arribo</h3><span class="ch-tog">▾</span></div>
     <div class="cb">
       <div class="f"><label>Uniformidad <span class="req">*</span></label>
-        <div class="rg">
-          <label class="opt-v"><input type="radio" name="r-uni" value="Alta"> Alta</label>
-          <label class="opt-a"><input type="radio" name="r-uni" value="Media"> Media</label>
-          <label class="opt-r"><input type="radio" name="r-uni" value="Baja"> Baja</label>
+        <div class="opts" data-group="r-uni" data-type="radio">
+          <button class="opt" data-val="Alta" data-color="n" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Alta</button>
+          <button class="opt" data-val="Media" data-color="a" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Media</button>
+          <button class="opt" data-val="Baja" data-color="r" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Baja</button>
         </div>
       </div>
       <div class="f"><label>Estado corporal <span class="req">*</span></label>
-        <div class="rg">
-          <label class="opt-v"><input type="radio" name="r-cc" value="Bueno"> Bueno</label>
-          <label class="opt-a"><input type="radio" name="r-cc" value="Regular"> Regular</label>
-          <label class="opt-r"><input type="radio" name="r-cc" value="Malo"> Malo</label>
+        <div class="opts" data-group="r-cc" data-type="radio">
+          <button class="opt" data-val="Bueno" data-color="n" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Bueno</button>
+          <button class="opt" data-val="Regular" data-color="a" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Regular</button>
+          <button class="opt" data-val="Malo" data-color="r" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Malo</button>
         </div>
       </div>
       <div class="f"><label>Problemas observados al arribo</label>
-        <div class="rg">
-          <label><input type="checkbox" name="r-prob" value="Cansados/sentidos"> Cansados / sentidos</label>
-          <label><input type="checkbox" name="r-prob" value="Caídos/débiles"> Caídos / débiles</label>
-          <label><input type="checkbox" name="r-prob" value="Respiratorio"> Respiratorio</label>
-          <label><input type="checkbox" name="r-prob" value="Diarrea"> Diarrea</label>
-          <label><input type="checkbox" name="r-prob" value="Garrapata/ectoparásitos"> Garrapata / ectoparásitos</label>
-          <label><input type="checkbox" name="r-prob" value="Bichera/lesiones"> Bichera / lesiones</label>
+        <div class="opts" data-group="r-prob" data-type="check">
+          <button class="opt" data-val="Cansados/sentidos" data-color="a" onclick="selOpt(this)"><span class="chk"><span class="chk-inner">✓</span></span>Cansados / sentidos</button>
+          <button class="opt" data-val="Caídos/débiles" data-color="r" onclick="selOpt(this)"><span class="chk"><span class="chk-inner">✓</span></span>Caídos / débiles</button>
+          <button class="opt" data-val="Respiratorio" data-color="r" onclick="selOpt(this)"><span class="chk"><span class="chk-inner">✓</span></span>Respiratorio</button>
+          <button class="opt" data-val="Diarrea" data-color="r" onclick="selOpt(this)"><span class="chk"><span class="chk-inner">✓</span></span>Diarrea</button>
+          <button class="opt" data-val="Garrapata/ectoparásitos" data-color="a" onclick="selOpt(this)"><span class="chk"><span class="chk-inner">✓</span></span>Garrapata / ectoparásitos</button>
+          <button class="opt" data-val="Bichera/lesiones" data-color="a" onclick="selOpt(this)"><span class="chk"><span class="chk-inner">✓</span></span>Bichera / lesiones</button>
         </div>
       </div>
       <div class="f"><label>Cantidad estimada con problemas (cabezas)</label><input type="number" id="r-cant-prob" inputmode="numeric"></div>
@@ -432,55 +420,55 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div class="ch" onclick="tog(this)"><h3>3. Evaluación y próximos pasos</h3><span class="ch-badge">obligatorio</span><span class="ch-tog">▾</span></div>
     <div class="cb">
       <div class="f"><label>Riesgo sanitario inicial <span class="req">*</span></label>
-        <div class="rg">
-          <label class="opt-v"><input type="radio" name="r-rs" value="Bajo"> Bajo</label>
-          <label class="opt-a"><input type="radio" name="r-rs" value="Medio"> Medio</label>
-          <label class="opt-r"><input type="radio" name="r-rs" value="Alto"> Alto</label>
+        <div class="opts" data-group="r-rs" data-type="radio">
+          <button class="opt" data-val="Bajo" data-color="n" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Bajo</button>
+          <button class="opt" data-val="Medio" data-color="a" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Medio</button>
+          <button class="opt" data-val="Alto" data-color="r" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Alto</button>
         </div>
       </div>
       <div class="f"><label>Riesgo por estrés / arribo <span class="req">*</span></label>
-        <div class="rg">
-          <label class="opt-v"><input type="radio" name="r-re" value="Bajo"> Bajo</label>
-          <label class="opt-a"><input type="radio" name="r-re" value="Medio"> Medio</label>
-          <label class="opt-r"><input type="radio" name="r-re" value="Alto"> Alto</label>
+        <div class="opts" data-group="r-re" data-type="radio">
+          <button class="opt" data-val="Bajo" data-color="n" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Bajo</button>
+          <button class="opt" data-val="Medio" data-color="a" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Medio</button>
+          <button class="opt" data-val="Alto" data-color="r" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Alto</button>
         </div>
       </div>
       <div class="f"><label>Riesgo por parasitismo externo <span class="req">*</span></label>
-        <div class="rg">
-          <label class="opt-v"><input type="radio" name="r-rp" value="Bajo"> Bajo</label>
-          <label class="opt-a"><input type="radio" name="r-rp" value="Medio"> Medio</label>
-          <label class="opt-r"><input type="radio" name="r-rp" value="Alto"> Alto</label>
+        <div class="opts" data-group="r-rp" data-type="radio">
+          <button class="opt" data-val="Bajo" data-color="n" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Bajo</button>
+          <button class="opt" data-val="Medio" data-color="a" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Medio</button>
+          <button class="opt" data-val="Alto" data-color="r" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Alto</button>
         </div>
       </div>
       <div class="f"><label>¿Primera sanidad realizada en origen?</label>
-        <div class="rg">
-          <label><input type="radio" name="r-sp" value="Si"> Sí</label>
-          <label><input type="radio" name="r-sp" value="No"> No</label>
-          <label><input type="radio" name="r-sp" value="Parcial"> Parcial</label>
-          <label><input type="radio" name="r-sp" value="Ni"> No informado</label>
+        <div class="opts" data-group="r-sp" data-type="radio">
+          <button class="opt" data-val="Si" data-color="n" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Sí</button>
+          <button class="opt" data-val="No" data-color="r" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>No</button>
+          <button class="opt" data-val="Parcial" data-color="a" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Parcial</button>
+          <button class="opt" data-val="Ni" data-color="a" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>No informado</button>
         </div>
       </div>
       <div class="f"><label>Pendientes sanitarios identificados</label>
-        <div class="rg">
-          <label><input type="checkbox" name="r-pend" value="Clostridial"> Clostridial</label>
-          <label><input type="checkbox" name="r-pend" value="Carbunclo"> Carbunclo bacteridiano</label>
-          <label><input type="checkbox" name="r-pend" value="Otras vacunas"> Otras vacunas</label>
-          <label><input type="checkbox" name="r-pend" value="Refuerzo vacunal"> Refuerzo vacunal</label>
-          <label><input type="checkbox" name="r-pend" value="Ectoparásitos"> Tratamiento ectoparásitos</label>
+        <div class="opts" data-group="r-pend" data-type="check">
+          <button class="opt" data-val="Clostridial" data-color="a" onclick="selOpt(this)"><span class="chk"><span class="chk-inner">✓</span></span>Clostridial</button>
+          <button class="opt" data-val="Carbunclo" data-color="a" onclick="selOpt(this)"><span class="chk"><span class="chk-inner">✓</span></span>Carbunclo bacteridiano</button>
+          <button class="opt" data-val="Otras vacunas" data-color="a" onclick="selOpt(this)"><span class="chk"><span class="chk-inner">✓</span></span>Otras vacunas</button>
+          <button class="opt" data-val="Refuerzo vacunal" data-color="a" onclick="selOpt(this)"><span class="chk"><span class="chk-inner">✓</span></span>Refuerzo vacunal</button>
+          <button class="opt" data-val="Ectoparásitos" data-color="a" onclick="selOpt(this)"><span class="chk"><span class="chk-inner">✓</span></span>Tratamiento ectoparásitos</button>
         </div>
       </div>
-      <div class="f"><label>Próximos pasos <span class="req">*</span></label>
-        <div class="rg">
-          <label><input type="checkbox" name="r-pasos" value="Primera sanidad en recepción"> Primera sanidad en recepción</label>
-          <label><input type="checkbox" name="r-pasos" value="Completar refuerzos"> Completar refuerzos pendientes</label>
-          <label><input type="checkbox" name="r-pasos" value="Observación reforzada"> Observación reforzada primeros días</label>
-          <label><input type="checkbox" name="r-pasos" value="Revisación veterinaria"> Revisación veterinaria</label>
-          <label><input type="checkbox" name="r-pasos" value="Aparte animales problema"> Aparte de animales problema</label>
+      <div class="f"><label>Próximos pasos</label>
+        <div class="opts" data-group="r-pasos" data-type="check">
+          <button class="opt" data-val="Primera sanidad en recepción" data-color="n" onclick="selOpt(this)"><span class="chk"><span class="chk-inner">✓</span></span>Primera sanidad en recepción</button>
+          <button class="opt" data-val="Completar refuerzos" data-color="n" onclick="selOpt(this)"><span class="chk"><span class="chk-inner">✓</span></span>Completar refuerzos pendientes</button>
+          <button class="opt" data-val="Observación reforzada" data-color="n" onclick="selOpt(this)"><span class="chk"><span class="chk-inner">✓</span></span>Observación reforzada primeros días</button>
+          <button class="opt" data-val="Revisación veterinaria" data-color="n" onclick="selOpt(this)"><span class="chk"><span class="chk-inner">✓</span></span>Revisación veterinaria</button>
+          <button class="opt" data-val="Aparte animales problema" data-color="n" onclick="selOpt(this)"><span class="chk"><span class="chk-inner">✓</span></span>Aparte de animales problema</button>
         </div>
       </div>
       <div class="f"><label>Observaciones finales</label><textarea id="r-obs-fin" placeholder="Notas de cierre de recepción..."></textarea></div>
       <button class="btn-save" id="btn-r" onclick="saveR()">Guardar y enviar a Sheets</button>
-      <button class="btn-clear" onclick="resetScr('recepcion')">Limpiar campos</button>
+      <button class="btn-clear" onclick="clearScr('recepcion')">Limpiar campos</button>
     </div>
   </div>
 </div>
@@ -509,28 +497,28 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div class="ch" onclick="tog(this)"><h3>2. Hallazgo inicial</h3><span class="ch-tog">▾</span></div>
     <div class="cb">
       <div class="f"><label>Motivo de detección <span class="req">*</span></label>
-        <div class="rg">
-          <label><input type="checkbox" name="i-mot" value="Decaído"> Decaído</label>
-          <label><input type="checkbox" name="i-mot" value="Respiratorio"> Respiratorio</label>
-          <label><input type="checkbox" name="i-mot" value="Diarrea"> Diarrea</label>
-          <label><input type="checkbox" name="i-mot" value="Renguera"> Renguera</label>
-          <label><input type="checkbox" name="i-mot" value="Bichera/herida"> Bichera / herida</label>
-          <label><input type="checkbox" name="i-mot" value="Parasitismo externo"> Parasitismo externo</label>
-          <label><input type="checkbox" name="i-mot" value="Bajo consumo"> Bajo consumo / no come</label>
-          <label><input type="checkbox" name="i-mot" value="Caído/débil"> Caído / débil</label>
+        <div class="opts" data-group="i-mot" data-type="check">
+          <button class="opt" data-val="Decaído" data-color="a" onclick="selOpt(this)"><span class="chk"><span class="chk-inner">✓</span></span>Decaído</button>
+          <button class="opt" data-val="Respiratorio" data-color="r" onclick="selOpt(this)"><span class="chk"><span class="chk-inner">✓</span></span>Respiratorio</button>
+          <button class="opt" data-val="Diarrea" data-color="r" onclick="selOpt(this)"><span class="chk"><span class="chk-inner">✓</span></span>Diarrea</button>
+          <button class="opt" data-val="Renguera" data-color="a" onclick="selOpt(this)"><span class="chk"><span class="chk-inner">✓</span></span>Renguera</button>
+          <button class="opt" data-val="Bichera/herida" data-color="a" onclick="selOpt(this)"><span class="chk"><span class="chk-inner">✓</span></span>Bichera / herida</button>
+          <button class="opt" data-val="Parasitismo externo" data-color="a" onclick="selOpt(this)"><span class="chk"><span class="chk-inner">✓</span></span>Parasitismo externo</button>
+          <button class="opt" data-val="Bajo consumo" data-color="a" onclick="selOpt(this)"><span class="chk"><span class="chk-inner">✓</span></span>Bajo consumo / no come</button>
+          <button class="opt" data-val="Caído/débil" data-color="r" onclick="selOpt(this)"><span class="chk"><span class="chk-inner">✓</span></span>Caído / débil</button>
         </div>
       </div>
       <div class="f"><label>Estado del animal <span class="req">*</span></label>
-        <div class="rg">
-          <label class="opt-v"><input type="radio" name="i-est" value="Leve"> Leve</label>
-          <label class="opt-a"><input type="radio" name="i-est" value="Moderado"> Moderado</label>
-          <label class="opt-r"><input type="radio" name="i-est" value="Grave"> Grave</label>
+        <div class="opts" data-group="i-est" data-type="radio">
+          <button class="opt" data-val="Leve" data-color="n" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Leve</button>
+          <button class="opt" data-val="Moderado" data-color="a" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Moderado</button>
+          <button class="opt" data-val="Grave" data-color="r" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Grave</button>
         </div>
       </div>
       <div class="f"><label>¿Está apartado?</label>
-        <div class="rg">
-          <label><input type="radio" name="i-ap" value="Si"> Sí</label>
-          <label><input type="radio" name="i-ap" value="No"> No</label>
+        <div class="opts" data-group="i-ap" data-type="radio">
+          <button class="opt" data-val="Si" data-color="n" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Sí</button>
+          <button class="opt" data-val="No" data-color="a" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>No</button>
         </div>
       </div>
       <div class="f"><label>Temperatura corporal (°C)</label><input type="number" step="0.1" id="i-temp" placeholder="ej. 39.8" inputmode="decimal" style="max-width:160px"></div>
@@ -541,9 +529,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div class="ch" onclick="tog(this)"><h3>3. Tratamiento y seguimiento</h3><span class="ch-tog">▾</span></div>
     <div class="cb">
       <div class="f"><label>¿Se trató? <span class="req">*</span></label>
-        <div class="rg">
-          <label><input type="radio" name="i-trat" value="Si"> Sí</label>
-          <label><input type="radio" name="i-trat" value="No"> No</label>
+        <div class="opts" data-group="i-trat" data-type="radio">
+          <button class="opt" data-val="Si" data-color="n" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Sí</button>
+          <button class="opt" data-val="No" data-color="a" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>No</button>
         </div>
       </div>
       <div class="row2">
@@ -552,11 +540,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       </div>
       <div class="f"><label>Responsable de aplicación</label><input type="text" id="i-rtrat" placeholder="Nombre"></div>
       <div class="f"><label>Evolución del caso</label>
-        <div class="rg">
-          <label class="opt-v"><input type="radio" name="i-evol" value="Mejora"> Mejora</label>
-          <label><input type="radio" name="i-evol" value="Igual"> Igual</label>
-          <label class="opt-a"><input type="radio" name="i-evol" value="Empeora"> Empeora</label>
-          <label><input type="radio" name="i-evol" value="Sin evaluar"> Sin evaluar</label>
+        <div class="opts" data-group="i-evol" data-type="radio">
+          <button class="opt" data-val="Mejora" data-color="n" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Mejora</button>
+          <button class="opt" data-val="Igual" data-color="a" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Igual</button>
+          <button class="opt" data-val="Empeora" data-color="r" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Empeora</button>
+          <button class="opt" data-val="Sin evaluar" data-color="a" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Sin evaluar</button>
         </div>
       </div>
       <div class="f"><label>Observaciones de seguimiento</label><textarea id="i-obs-seg" placeholder="Evolución, controles posteriores..."></textarea></div>
@@ -566,12 +554,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div class="ch" onclick="tog(this)"><h3>4. Resultado final</h3><span class="ch-badge">cierre</span><span class="ch-tog">▾</span></div>
     <div class="cb">
       <div class="f"><label>Estado final del caso <span class="req">*</span></label>
-        <div class="rg">
-          <label class="opt-v"><input type="radio" name="i-res" value="Recuperado"> Recuperado</label>
-          <label><input type="radio" name="i-res" value="En seguimiento"> En seguimiento</label>
-          <label class="opt-a"><input type="radio" name="i-res" value="Crónico"> Crónico</label>
-          <label class="opt-r"><input type="radio" name="i-res" value="Muerto"> Muerto</label>
-          <label><input type="radio" name="i-res" value="Descartado"> Descartado / retirado</label>
+        <div class="opts" data-group="i-res" data-type="radio">
+          <button class="opt" data-val="Recuperado" data-color="n" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Recuperado</button>
+          <button class="opt" data-val="En seguimiento" data-color="a" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>En seguimiento</button>
+          <button class="opt" data-val="Crónico" data-color="a" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Crónico</button>
+          <button class="opt" data-val="Muerto" data-color="r" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Muerto</button>
+          <button class="opt" data-val="Descartado" data-color="a" onclick="selOpt(this)"><span class="dot"><span class="dot-inner"></span></span>Descartado / retirado</button>
         </div>
       </div>
       <div class="row2">
@@ -581,7 +569,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div class="f"><label>Responsable de cierre</label><input type="text" id="i-rcierre" placeholder="Nombre"></div>
       <div class="f"><label>Observaciones finales</label><textarea id="i-obs-fin" placeholder="Notas de cierre del caso..."></textarea></div>
       <button class="btn-save" id="btn-i" onclick="saveI()">Guardar y enviar a Sheets</button>
-      <button class="btn-clear" onclick="resetScr('individual')">Limpiar campos</button>
+      <button class="btn-clear" onclick="clearScr('individual')">Limpiar campos</button>
     </div>
   </div>
 </div>
@@ -594,20 +582,49 @@ var GAS='https://script.google.com/macros/s/AKfycbzDg7R_xGfNco6oBbZScW8kPyzhtytc
 var recs=[],pending=[];
 try{var _r=localStorage.getItem('lj_recs');if(_r)recs=JSON.parse(_r);}catch(e){}
 try{var _p=localStorage.getItem('lj_pending');if(_p)pending=JSON.parse(_p);}catch(e){}
-
-function persist(){
-  try{localStorage.setItem('lj_recs',JSON.stringify(recs));}catch(e){}
-  try{localStorage.setItem('lj_pending',JSON.stringify(pending));}catch(e){}
-}
+function persist(){try{localStorage.setItem('lj_recs',JSON.stringify(recs));}catch(e){}try{localStorage.setItem('lj_pending',JSON.stringify(pending));}catch(e){}}
 function v(id){var e=document.getElementById(id);return e?e.value.trim():'';}
-function rad(n){var e=document.querySelector('input[name="'+n+'"]:checked');return e?e.value:'';}
-function chks(n){return Array.from(document.querySelectorAll('input[name="'+n+'"]:checked')).map(function(e){return e.value;}).join(', ');}
 
-function toast(m,dur){
-  var t=document.getElementById('toast');
-  t.textContent=m;t.classList.add('on');
-  setTimeout(function(){t.classList.remove('on');},(dur||2500));
+/* SISTEMA DE SELECCIÓN CUSTOM */
+function selOpt(btn){
+  var grp=btn.parentElement;
+  var type=grp.dataset.type;
+  if(type==='radio'){
+    Array.from(grp.children).forEach(function(b){
+      b.className='opt';
+    });
+    var c=btn.dataset.color;
+    btn.classList.add('sel-'+c);
+  } else {
+    var c=btn.dataset.color;
+    if(btn.classList.contains('sel-'+c)){
+      btn.className='opt';
+    } else {
+      btn.classList.add('sel-'+c);
+    }
+  }
+  calcScore();
 }
+
+function getOpt(groupId){
+  var grp=document.querySelector('[data-group="'+groupId+'"]');
+  if(!grp)return'';
+  var type=grp.dataset.type;
+  if(type==='radio'){
+    var sel=grp.querySelector('.opt[class*="sel-"]');
+    return sel?sel.dataset.val:'';
+  } else {
+    return Array.from(grp.querySelectorAll('.opt[class*="sel-"]')).map(function(b){return b.dataset.val;}).join(', ');
+  }
+}
+
+function clearOpts(groupId){
+  var grp=document.querySelector('[data-group="'+groupId+'"]');
+  if(!grp)return;
+  Array.from(grp.children).forEach(function(b){b.className='opt';});
+}
+
+function toast(m,dur){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');setTimeout(function(){t.classList.remove('on');},(dur||2500));}
 
 function setSyncState(s){
   var dot=document.getElementById('sdot'),lbl=document.getElementById('slabel');
@@ -618,55 +635,30 @@ function setSyncState(s){
   else if(s==='pending'){dot.style.background='#BA7517';lbl.textContent='Pendiente';}
 }
 
-function setBtn(id,loading){
-  var b=document.getElementById(id);if(!b)return;
-  b.disabled=loading;
-  b.textContent=loading?'Enviando...':'Guardar y enviar a Sheets';
-}
+function setBtn(id,loading){var b=document.getElementById(id);if(!b)return;b.disabled=loading;b.textContent=loading?'Enviando...':'Guardar y enviar a Sheets';}
 
 function sendToSheets(rec,btnId){
   setSyncState('syncing');setBtn(btnId,true);
   var ctrl=new AbortController(),tid=setTimeout(function(){ctrl.abort();},10000);
   fetch(GAS,{method:'POST',mode:'no-cors',body:JSON.stringify(rec),signal:ctrl.signal})
-    .then(function(){
-      clearTimeout(tid);
-      rec._synced=true;
-      pending=pending.filter(function(id){return id!==rec.id;});
-      persist();setSyncState('ok');toast('Guardado en Sheets ✓');
-    })
-    .catch(function(){
-      clearTimeout(tid);
-      rec._synced=false;
-      if(pending.indexOf(rec.id)<0)pending.push(rec.id);
-      persist();setSyncState('offline');
-      toast('Sin conexión — guardado localmente',3500);
-    })
+    .then(function(){clearTimeout(tid);rec._synced=true;pending=pending.filter(function(id){return id!==rec.id;});persist();setSyncState('ok');toast('Guardado en Sheets ✓');})
+    .catch(function(){clearTimeout(tid);rec._synced=false;if(pending.indexOf(rec.id)<0)pending.push(rec.id);persist();setSyncState('offline');toast('Sin conexión — guardado localmente',3500);})
     .finally(function(){setBtn(btnId,false);updatePending();renderHome();});
 }
 
 function retryPending(){
   if(!pending.length)return;
   pending.slice().forEach(function(id){
-    var rec=recs.find(function(r){return r.id===id;});
-    if(!rec)return;
+    var rec=recs.find(function(r){return r.id===id;});if(!rec)return;
     fetch(GAS,{method:'POST',mode:'no-cors',body:JSON.stringify(rec)})
-      .then(function(){
-        rec._synced=true;
-        pending=pending.filter(function(p){return p!==id;});
-        persist();updatePending();if(!pending.length)setSyncState('ok');
-      }).catch(function(){});
+      .then(function(){rec._synced=true;pending=pending.filter(function(p){return p!==id;});persist();updatePending();if(!pending.length)setSyncState('ok');}).catch(function(){});
   });
 }
 
 function updatePending(){
   var tag=document.getElementById('pending-tag'),ob=document.getElementById('offline-banner');
-  if(pending.length){
-    tag.style.display='inline-block';
-    tag.textContent=pending.length+' pendiente'+(pending.length>1?'s':'');
-    ob.style.display='block';setSyncState('pending');
-  } else {
-    tag.style.display='none';ob.style.display='none';
-  }
+  if(pending.length){tag.style.display='inline-block';tag.textContent=pending.length+' pendiente'+(pending.length>1?'s':'');ob.style.display='block';setSyncState('pending');}
+  else{tag.style.display='none';ob.style.display='none';}
 }
 
 function go(id){
@@ -677,30 +669,25 @@ function go(id){
   if(id==='home')renderHome();
 }
 
-function tog(h){
-  var b=h.nextElementSibling,tg=h.querySelector('.ch-tog');
-  if(b.classList.contains('o')){b.classList.remove('o');tg.classList.remove('o');}
-  else{b.classList.add('o');tg.classList.add('o');}
-}
+function tog(h){var b=h.nextElementSibling,tg=h.querySelector('.ch-tog');if(b.classList.contains('o')){b.classList.remove('o');tg.classList.remove('o');}else{b.classList.add('o');tg.classList.add('o');}}
 
 function rMap(val){return val==='Bajo'?1:val==='Medio'?0.5:val==='Alto'?0:null;}
 
 function calcScore(){
   var weights=[
-    [rMap(rad('p-rs')),30,'Sanitario'],
-    [rMap(rad('p-ri')),20,'Información'],
-    [rMap(rad('p-rc')),15,'Condición'],
-    [rad('p-uni')==='Alta'?1:rad('p-uni')==='Media'?0.6:rad('p-uni')==='Baja'?0.2:null,10,'Uniformidad'],
-    [rad('p-cc')==='Bueno'?1:rad('p-cc')==='Regular'?0.5:rad('p-cc')==='Malo'?0:null,10,'CC'],
-    [rad('p-gn')==='Bajo'?1:rad('p-gn')==='Medio'?0.4:rad('p-gn')==='Alto'?0:rad('p-gn')==='Ni'?0.5:null,8,'Garrapata'],
-    [rad('p-clos')==='Si'?1:rad('p-clos')==='No'?0:rad('p-clos')==='Ni'?0.3:null,4,'Clostridial'],
-    [rad('p-carb')==='Si'?1:rad('p-carb')==='No'?0:rad('p-carb')==='Ni'?0.3:null,2,'Carbunclo']
+    [rMap(getOpt('p-rs')),30,'Sanitario'],
+    [rMap(getOpt('p-ri')),20,'Información'],
+    [rMap(getOpt('p-rc')),15,'Condición'],
+    [getOpt('p-uni')==='Alta'?1:getOpt('p-uni')==='Media'?0.6:getOpt('p-uni')==='Baja'?0.2:null,10,'Uniformidad'],
+    [getOpt('p-cc')==='Bueno'?1:getOpt('p-cc')==='Regular'?0.5:getOpt('p-cc')==='Malo'?0:null,10,'CC'],
+    [getOpt('p-gn')==='Bajo'?1:getOpt('p-gn')==='Medio'?0.4:getOpt('p-gn')==='Alto'?0:getOpt('p-gn')==='Ni'?0.5:null,8,'Garrapata'],
+    [getOpt('p-clos')==='Si'?1:getOpt('p-clos')==='No'?0:getOpt('p-clos')==='Ni'?0.3:null,4,'Clostridial'],
+    [getOpt('p-carb')==='Si'?1:getOpt('p-carb')==='No'?0:getOpt('p-carb')==='Ni'?0.3:null,2,'Carbunclo']
   ];
   var total=0,totalW=0,labels={};
   weights.forEach(function(w){if(w[0]!==null){total+=w[0]*w[1];totalW+=w[1];labels[w[2]]=Math.round(w[0]*100)+'%';}});
   var pct=totalW>0?Math.round(total/totalW*100):null;
-  var bar=document.getElementById('sbar'),num=document.getElementById('snum'),
-      verd=document.getElementById('sverdict'),grid=document.getElementById('sgrid');
+  var bar=document.getElementById('sbar'),num=document.getElementById('snum'),verd=document.getElementById('sverdict'),grid=document.getElementById('sgrid');
   if(pct===null){num.textContent='—';verd.style.display='none';bar.style.width='0%';grid.style.display='none';return;}
   num.textContent=pct+' / 100';verd.style.display='inline-block';grid.style.display='grid';
   if(pct>=70){bar.style.background='#639922';verd.textContent='Compra favorable';verd.className='score-verdict sv-v';}
@@ -726,27 +713,24 @@ function checkHist(){
   var avg=scores.length?Math.round(scores.reduce(function(a,b){return a+b;},0)/scores.length):null;
   var html='<strong>Historial — '+prev.length+' compra'+(prev.length>1?'s':'')+' con este proveedor</strong><br>';
   if(avg!=null)html+='Score promedio: <strong>'+avg+'/100</strong> &nbsp;';
-  if(decs.length){var c={};decs.forEach(function(d){c[d]=(c[d]||0)+1;});
-    html+=Object.keys(c).map(function(k){var cl=k==='Apto'?'hp-v':k==='Apto con cond.'?'hp-a':'hp-r';return '<span class="hist-pill '+cl+'">'+k+' ('+c[k]+')</span>';}).join('');}
+  if(decs.length){var c={};decs.forEach(function(d){c[d]=(c[d]||0)+1;});html+=Object.keys(c).map(function(k){var cl=k==='Apto'?'hp-v':k==='Apto con cond.'?'hp-a':'hp-r';return '<span class="hist-pill '+cl+'">'+k+' ('+c[k]+')</span>';}).join('');}
   banner.innerHTML=html;banner.style.display='block';
 }
 
 function saveP(){
   if(!v('p-prov')||!v('p-fecha')||!v('p-cant')){toast('Completar campos obligatorios');return;}
-  var n=document.getElementById('snum').textContent;
-  var pct=n&&n!=='—'?parseInt(n):null;
+  var n=document.getElementById('snum').textContent;var pct=n&&n!=='—'?parseInt(n):null;
   var r={id:'pre-'+Date.now(),type:'pre',ts:new Date().toISOString(),
     fecha:v('p-fecha'),proveedor:v('p-prov'),origen:v('p-origen'),cantidad:v('p-cant'),
     peso:v('p-peso'),racial:v('p-racial'),consig:v('p-consig'),
-    uniformidad:rad('p-uni'),cc:rad('p-cc'),destete:rad('p-dest'),fdestete:v('p-fdest'),
-    paricion:v('p-paricion'),chicos:rad('p-chicos'),prob:rad('p-prob'),garra:rad('p-garra'),
-    obsCond:v('p-obs-cond'),clos:rad('p-clos'),closD:v('p-clos-d'),closP:v('p-clos-p'),
-    carb:rad('p-carb'),garrProb:rad('p-gp'),garrNivel:rad('p-gn'),obsSan:v('p-obs-san'),
-    rSan:rad('p-rs'),rInfo:rad('p-ri'),rCond:rad('p-rc'),decision:rad('p-dec'),
+    uniformidad:getOpt('p-uni'),cc:getOpt('p-cc'),destete:getOpt('p-dest'),fdestete:v('p-fdest'),
+    paricion:v('p-paricion'),chicos:getOpt('p-chicos'),prob:getOpt('p-prob'),garra:getOpt('p-garra'),
+    obsCond:v('p-obs-cond'),clos:getOpt('p-clos'),closD:v('p-clos-d'),closP:v('p-clos-p'),
+    carb:getOpt('p-carb'),garrProb:getOpt('p-gp'),garrNivel:getOpt('p-gn'),obsSan:v('p-obs-san'),
+    rSan:getOpt('p-rs'),rInfo:getOpt('p-ri'),rCond:getOpt('p-rc'),decision:getOpt('p-dec'),
     proximo:v('p-prox'),evaluador:v('p-eval'),obsFin:v('p-obs-fin'),
-    scoreNum:pct,riskLevel:rad('p-rs')||rad('p-rc')};
-  recs.unshift(r);persist();updateCounts();resetScr('precompra');calcScore();
-  sendToSheets(r,'btn-p');
+    scoreNum:pct,riskLevel:getOpt('p-rs')||getOpt('p-rc')};
+  recs.unshift(r);persist();updateCounts();clearScr('precompra');sendToSheets(r,'btn-p');
 }
 
 function saveR(){
@@ -754,35 +738,38 @@ function saveR(){
   var r={id:'rec-'+Date.now(),type:'rec',ts:new Date().toISOString(),
     fecha:v('r-fecha'),hora:v('r-hora'),proveedor:v('r-prov'),origen:v('r-origen'),
     lote:v('r-lote'),cantidad:v('r-cant'),peso:v('r-peso'),traslado:v('r-trasl'),
-    modulo:v('r-modulo'),responsable:v('r-resp'),uniformidad:rad('r-uni'),cc:rad('r-cc'),
-    problemas:chks('r-prob'),cantProb:v('r-cant-prob'),obsArr:v('r-obs-arr'),
-    rSan:rad('r-rs'),rEstres:rad('r-re'),rPara:rad('r-rp'),sanPrev:rad('r-sp'),
-    pendientes:chks('r-pend'),pasos:chks('r-pasos'),obsFin:v('r-obs-fin'),
-    riskLevel:rad('r-rs')};
-  recs.unshift(r);persist();updateCounts();resetScr('recepcion');
-  sendToSheets(r,'btn-r');
+    modulo:v('r-modulo'),responsable:v('r-resp'),uniformidad:getOpt('r-uni'),cc:getOpt('r-cc'),
+    problemas:getOpt('r-prob'),cantProb:v('r-cant-prob'),obsArr:v('r-obs-arr'),
+    rSan:getOpt('r-rs'),rEstres:getOpt('r-re'),rPara:getOpt('r-rp'),sanPrev:getOpt('r-sp'),
+    pendientes:getOpt('r-pend'),pasos:getOpt('r-pasos'),obsFin:v('r-obs-fin'),
+    riskLevel:getOpt('r-rs')};
+  recs.unshift(r);persist();updateCounts();clearScr('recepcion');sendToSheets(r,'btn-r');
 }
 
 function saveI(){
   if(!v('i-animal')||!v('i-lote')||!v('i-fecha')){toast('Completar campos obligatorios');return;}
-  var est=rad('i-est');
+  var est=getOpt('i-est');
   var r={id:'ind-'+Date.now(),type:'ind',ts:new Date().toISOString(),
     fecha:v('i-fecha'),dias:v('i-dias'),lote:v('i-lote'),potrero:v('i-pot'),
     animal:v('i-animal'),peso:v('i-peso'),responsable:v('i-resp'),
-    motivos:chks('i-mot'),estado:est,apartado:rad('i-ap'),temp:v('i-temp'),
-    obsIni:v('i-obs-ini'),tratado:rad('i-trat'),fechaTrat:v('i-ftrat'),
-    producto:v('i-prod'),respTrat:v('i-rtrat'),evolucion:rad('i-evol'),
-    obsSeg:v('i-obs-seg'),resultado:rad('i-res'),fechaCierre:v('i-fcierre'),
+    motivos:getOpt('i-mot'),estado:est,apartado:getOpt('i-ap'),temp:v('i-temp'),
+    obsIni:v('i-obs-ini'),tratado:getOpt('i-trat'),fechaTrat:v('i-ftrat'),
+    producto:v('i-prod'),respTrat:v('i-rtrat'),evolucion:getOpt('i-evol'),
+    obsSeg:v('i-obs-seg'),resultado:getOpt('i-res'),fechaCierre:v('i-fcierre'),
     diagnostico:v('i-diag'),respCierre:v('i-rcierre'),obsFin:v('i-obs-fin'),
     riskLevel:est==='Grave'?'Alto':est==='Moderado'?'Medio':'Bajo'};
-  recs.unshift(r);persist();updateCounts();resetScr('individual');
-  sendToSheets(r,'btn-i');
+  recs.unshift(r);persist();updateCounts();clearScr('individual');sendToSheets(r,'btn-i');
 }
 
-function resetScr(t){
+function clearScr(t){
   var s=document.getElementById('scr-'+t);if(!s)return;
   s.querySelectorAll('input:not([type=radio]):not([type=checkbox]),textarea,select').forEach(function(e){e.value='';});
-  s.querySelectorAll('input[type=radio],input[type=checkbox]').forEach(function(e){e.checked=false;});
+  s.querySelectorAll('.opts[data-group]').forEach(function(grp){
+    Array.from(grp.children).forEach(function(b){b.className='opt';});
+  });
+  if(t==='precompra'){calcScore();var td=new Date().toISOString().slice(0,10);var pf=document.getElementById('p-fecha');if(pf)pf.value=td;}
+  if(t==='recepcion'){var td=new Date().toISOString().slice(0,10);var rf=document.getElementById('r-fecha');if(rf)rf.value=td;}
+  if(t==='individual'){var td=new Date().toISOString().slice(0,10);var fi=document.getElementById('i-fecha');if(fi)fi.value=td;}
 }
 
 function fd(d){if(!d)return '';var p=d.split('-');return p.length===3?p[2]+'/'+p[1]+'/'+p[0]:d;}
@@ -794,11 +781,7 @@ function updateCounts(){
 }
 
 var curFilt='all';
-function filt(f,btn){
-  curFilt=f;
-  document.querySelectorAll('.fb').forEach(function(b){b.classList.remove('on');});
-  btn.classList.add('on');renderHome();
-}
+function filt(f,btn){curFilt=f;document.querySelectorAll('.fb').forEach(function(b){b.classList.remove('on');});btn.classList.add('on');renderHome();}
 
 function renderHome(){
   var list=document.getElementById('reclist');
@@ -819,14 +802,11 @@ function renderHome(){
 function exportCSV(){
   if(!recs.length){toast('Sin registros para exportar');return;}
   var cols=Array.from(new Set(recs.flatMap(Object.keys)));
-  var csv=cols.join(',')+'\n'+recs.map(function(r){
-    return cols.map(function(c){var vv=(r[c]!=null?r[c]:'').toString().replace(/"/g,'""');return '"'+vv+'"';}).join(',');
-  }).join('\n');
+  var csv=cols.join(',')+'\n'+recs.map(function(r){return cols.map(function(c){var vv=(r[c]!=null?r[c]:'').toString().replace(/"/g,'""');return '"'+vv+'"';}).join(',');}).join('\n');
   var a=document.createElement('a');
   a.href=URL.createObjectURL(new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'}));
   a.download='LaJosefina_'+new Date().toISOString().slice(0,10)+'.csv';
-  document.body.appendChild(a);a.click();document.body.removeChild(a);
-  toast('CSV exportado');
+  document.body.appendChild(a);a.click();document.body.removeChild(a);toast('CSV exportado');
 }
 
 var td=new Date().toISOString().slice(0,10);
