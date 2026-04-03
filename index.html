@@ -9,7 +9,8 @@
 <meta name="theme-color" content="#3B6D11">
 <title>La Josefina — Fichas</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;cursor:pointer}
+input,textarea,select{cursor:text}
 :root{
   --g:#3B6D11;--gl:#EAF3DE;--gm:#639922;--gd:#27500A;
   --am:#BA7517;--al:#FAEEDA;--ad:#633806;
@@ -29,8 +30,6 @@
 }
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:16px;line-height:1.5}
 .app{max-width:680px;margin:0 auto;padding-bottom:80px}
-
-/* TOPBAR */
 .topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 16px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:100}
 .logo{width:32px;height:32px;background:var(--g);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:600;flex-shrink:0}
 .topbar-title{font-size:16px;font-weight:600;color:var(--text)}
@@ -41,28 +40,20 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .sync-dot.error{background:var(--rd)}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 .sync-label{font-size:11px;color:var(--text2)}
-
-/* NAV */
 .nav{background:var(--surface);border-bottom:1px solid var(--border);display:flex;position:sticky;top:57px;z-index:99}
-.nb{flex:1;padding:10px 4px 9px;font-size:11px;font-weight:500;color:var(--text2);background:none;border:none;border-bottom:2.5px solid transparent;cursor:pointer;text-align:center;line-height:1.3;transition:color .15s,border-color .15s}
+.nb{flex:1;padding:10px 4px 9px;font-size:11px;font-weight:500;color:var(--text2);background:none;border:none;border-bottom:2.5px solid transparent;text-align:center;line-height:1.3;transition:color .15s,border-color .15s}
 .nb.on{color:var(--g);border-bottom-color:var(--g)}
 .nb-icon{display:block;font-size:18px;margin-bottom:2px}
-
-/* SCREENS */
 .scr{display:none;padding:14px 14px 0}
 .scr.on{display:block}
-
-/* CARDS */
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px;overflow:hidden}
-.ch{padding:13px 15px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none}
+.ch{padding:13px 15px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
 .ch h3{font-size:14px;font-weight:600;flex:1;color:var(--text)}
 .ch-badge{font-size:10px;padding:3px 8px;border-radius:20px;background:var(--surface2);color:var(--text2);font-weight:500}
 .ch-tog{font-size:12px;color:var(--text3);transition:transform .2s;margin-left:2px}
 .ch-tog.o{transform:rotate(180deg)}
 .cb{padding:14px 15px;display:none}
 .cb.o{display:block}
-
-/* FIELDS */
 .f{margin-bottom:14px}
 .f:last-child{margin-bottom:0}
 .f label{display:block;font-size:12px;color:var(--text2);margin-bottom:5px;font-weight:500;letter-spacing:.01em}
@@ -71,30 +62,39 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   width:100%;background:var(--surface2);border:1px solid var(--border);
   border-radius:var(--radius-sm);padding:10px 12px;font-size:15px;
   color:var(--text);font-family:inherit;transition:border-color .15s;
-  -webkit-appearance:none;appearance:none;
+  -webkit-appearance:none;appearance:none;cursor:text;
 }
 .f input:focus,.f select:focus,.f textarea:focus{outline:none;border-color:var(--gm)}
 .f textarea{resize:vertical;min-height:70px}
-.f select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6B67' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px}
+.f select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6B67' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px;cursor:pointer}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @media(max-width:380px){.row2{grid-template-columns:1fr}}
 
-/* RADIO / CHECKBOX GROUPS */
+/* RADIO / CHECKBOX — fix táctil iOS */
 .rg{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
 .rg label{
   display:flex;align-items:center;gap:7px;
-  padding:8px 12px;background:var(--surface2);
+  padding:10px 14px;background:var(--surface2);
   border:1px solid var(--border);border-radius:var(--radius-sm);
-  font-size:14px;cursor:pointer;transition:all .1s;
+  font-size:14px;
   user-select:none;
+  min-height:44px;
+  cursor:pointer;
+  -webkit-user-select:none;
 }
-.rg label:active{opacity:.75}
-.rg input[type=radio],.rg input[type=checkbox]{width:16px;height:16px;accent-color:var(--g);flex-shrink:0}
+.rg label:active{opacity:.7}
+.rg label *{pointer-events:none}
+.rg input[type=radio],.rg input[type=checkbox]{
+  width:20px;height:20px;
+  accent-color:var(--g);
+  flex-shrink:0;
+  pointer-events:none;
+  cursor:pointer;
+}
 .opt-v{border-color:#639922!important;background:var(--gl)!important;color:#27500A!important}
 .opt-a{border-color:#BA7517!important;background:var(--al)!important;color:#633806!important}
 .opt-r{border-color:#A32D2D!important;background:var(--rl)!important;color:#791F1F!important}
 
-/* SCORE PANEL */
 .score-panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:15px;margin-bottom:10px}
 .score-top{display:flex;align-items:center;gap:12px;margin-bottom:10px}
 .score-num{font-size:28px;font-weight:700;color:var(--text);line-height:1}
@@ -109,30 +109,24 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .score-item{background:var(--surface2);border-radius:var(--radius-sm);padding:8px 10px}
 .score-item-label{font-size:11px;color:var(--text2);margin-bottom:2px}
 .score-item-val{font-size:13px;font-weight:600;color:var(--text)}
-
-/* HISTORY BANNER */
 .hist-banner{background:var(--gl);border:1px solid #97C459;border-radius:var(--radius-sm);padding:11px 13px;margin-bottom:10px;font-size:13px;color:#27500A;display:none}
 .hist-banner strong{font-weight:600}
 .hist-pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:10px;font-weight:600;margin:3px 3px 0 0}
 .hp-v{background:var(--gl);color:#27500A}
 .hp-a{background:var(--al);color:#633806}
 .hp-r{background:var(--rl);color:#791F1F}
-
-/* OFFLINE BANNER */
 .offline-banner{background:var(--al);border:1px solid #EF9F27;border-radius:var(--radius-sm);padding:10px 13px;margin-bottom:10px;font-size:13px;color:#633806;display:none}
-
-/* SAVE BUTTON */
 .btn-save{
   width:100%;padding:14px;background:var(--g);color:#fff;
   border:none;border-radius:var(--radius-sm);font-size:15px;
-  font-weight:600;cursor:pointer;margin-top:10px;
+  font-weight:600;margin-top:10px;
   display:flex;align-items:center;justify-content:center;gap:8px;
-  transition:opacity .15s;
+  transition:opacity .15s;cursor:pointer;
 }
 .btn-save:active{opacity:.85}
 .btn-save:disabled{opacity:.55;cursor:not-allowed}
-
-/* HOME SCREEN */
+.btn-clear{width:100%;padding:12px;background:none;color:var(--text2);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:14px;font-weight:500;margin-top:8px;cursor:pointer;transition:all .15s}
+.btn-clear:active{background:var(--surface2)}
 .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:4px 0 14px}
 .sb{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px 8px;text-align:center}
 .sb-n{font-size:24px;font-weight:700;color:var(--text)}
@@ -140,13 +134,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .home-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
 .home-hdr h2{font-size:16px;font-weight:600}
 .btn-sec{padding:9px 14px;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;font-weight:500;cursor:pointer}
-.btn-sec:active{opacity:.75}
 .filter-row{display:flex;gap:6px;margin-bottom:12px;overflow-x:auto;padding-bottom:2px}
-.fb{padding:6px 14px;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid var(--border);background:var(--surface2);color:var(--text2);white-space:nowrap;flex-shrink:0;transition:all .15s}
+.fb{padding:6px 14px;border-radius:20px;font-size:12px;font-weight:500;border:1px solid var(--border);background:var(--surface2);color:var(--text2);white-space:nowrap;flex-shrink:0;transition:all .15s;cursor:pointer}
 .fb.on{background:var(--g);color:#fff;border-color:var(--g)}
 .pending-tag{font-size:10px;padding:2px 7px;border-radius:10px;background:var(--al);color:#633806;font-weight:600;margin-left:7px;display:none}
-
-/* RECORD CARDS */
 .rec-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;margin-bottom:8px}
 .rec-top{display:flex;align-items:center;gap:7px;margin-bottom:6px;flex-wrap:wrap}
 .rbadge{font-size:10px;padding:3px 8px;border-radius:10px;font-weight:600}
@@ -164,23 +155,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .pm{background:var(--al);color:#633806}
 .ph{background:var(--rl);color:#791F1F}
 .empty{text-align:center;padding:48px 20px;color:var(--text3);font-size:14px;line-height:1.6}
-
-/* TOAST */
-.toast{
-  background:#27500A;color:#C0DD97;
-  padding:10px 20px;border-radius:20px;
-  font-size:13px;font-weight:500;
-  position:fixed;bottom:92px;left:50%;transform:translateX(-50%);
-  opacity:0;transition:opacity .3s;pointer-events:none;z-index:999;
-  white-space:nowrap;box-shadow:0 4px 16px rgba(0,0,0,.15);
-}
+.toast{background:#27500A;color:#C0DD97;padding:10px 20px;border-radius:20px;font-size:13px;font-weight:500;position:fixed;bottom:92px;left:50%;transform:translateX(-50%);opacity:0;transition:opacity .3s;pointer-events:none;z-index:999;white-space:nowrap}
 .toast.on{opacity:1}
 </style>
 </head>
 <body>
 <div class="app">
 
-<!-- TOPBAR -->
 <div class="topbar">
   <div class="logo">LJ</div>
   <div>
@@ -193,27 +174,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   </div>
 </div>
 
-<!-- NAV -->
 <div class="nav">
-  <button class="nb on" onclick="go('home')" id="nav-home">
-    <span class="nb-icon">⊞</span>Inicio
-  </button>
-  <button class="nb" onclick="go('precompra')" id="nav-precompra">
-    <span class="nb-icon">◎</span>Precompra
-  </button>
-  <button class="nb" onclick="go('recepcion')" id="nav-recepcion">
-    <span class="nb-icon">◉</span>Recepción
-  </button>
-  <button class="nb" onclick="go('individual')" id="nav-individual">
-    <span class="nb-icon">◐</span>Caso
-  </button>
+  <button class="nb on" onclick="go('home')" id="nav-home"><span class="nb-icon">⊞</span>Inicio</button>
+  <button class="nb" onclick="go('precompra')" id="nav-precompra"><span class="nb-icon">◎</span>Precompra</button>
+  <button class="nb" onclick="go('recepcion')" id="nav-recepcion"><span class="nb-icon">◉</span>Recepción</button>
+  <button class="nb" onclick="go('individual')" id="nav-individual"><span class="nb-icon">◐</span>Caso</button>
 </div>
 
 <!-- HOME -->
 <div id="scr-home" class="scr on">
-  <div class="offline-banner" id="offline-banner">
-    Sin conexión — los registros se guardaron localmente y se enviarán solos cuando vuelva la red.
-  </div>
+  <div class="offline-banner" id="offline-banner">Sin conexión — guardado localmente, se enviará cuando vuelva la red.</div>
   <div class="stat-row">
     <div class="sb"><div class="sb-n" id="cnt-p">0</div><div class="sb-l">Precompras</div></div>
     <div class="sb"><div class="sb-n" id="cnt-r">0</div><div class="sb-l">Recepciones</div></div>
@@ -234,7 +204,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 <!-- PRECOMPRA -->
 <div id="scr-precompra" class="scr">
-
   <div class="score-panel">
     <div class="score-hint">Score de seguridad — se actualiza en tiempo real</div>
     <div class="score-top">
@@ -251,9 +220,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div class="score-item"><div class="score-item-label">Garrapata</div><div class="score-item-val" id="sd-garra">—</div></div>
     </div>
   </div>
-
   <div class="hist-banner" id="hist-banner"></div>
-
   <div class="card">
     <div class="ch" onclick="tog(this)"><h3>1. Identificación del lote</h3><span class="ch-badge">obligatorio</span><span class="ch-tog o">▾</span></div>
     <div class="cb o">
@@ -270,7 +237,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div class="f"><label>Consignataria</label><input type="text" id="p-consig" placeholder="Opcional"></div>
     </div>
   </div>
-
   <div class="card">
     <div class="ch" onclick="tog(this)"><h3>2. Condición general declarada</h3><span class="ch-tog">▾</span></div>
     <div class="cb">
@@ -321,7 +287,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div class="f"><label>Observaciones generales</label><textarea id="p-obs-cond" placeholder="Notas sobre condición del lote..."></textarea></div>
     </div>
   </div>
-
   <div class="card">
     <div class="ch" onclick="tog(this)"><h3>3. Antecedentes sanitarios</h3><span class="ch-tog">▾</span></div>
     <div class="cb">
@@ -361,7 +326,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div class="f"><label>Observaciones sanitarias</label><textarea id="p-obs-san" placeholder="Otras vacunas, tratamientos, historia..."></textarea></div>
     </div>
   </div>
-
   <div class="card">
     <div class="ch" onclick="tog(this)"><h3>4. Evaluación final</h3><span class="ch-badge">obligatorio</span><span class="ch-tog">▾</span></div>
     <div class="cb">
@@ -405,6 +369,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div class="f"><label>Evaluador <span class="req">*</span></label><input type="text" id="p-eval" placeholder="Nombre completo"></div>
       <div class="f"><label>Observaciones finales</label><textarea id="p-obs-fin" placeholder="Notas de cierre..."></textarea></div>
       <button class="btn-save" id="btn-p" onclick="saveP()">Guardar y enviar a Sheets</button>
+      <button class="btn-clear" onclick="resetScr('precompra');calcScore()">Limpiar campos</button>
     </div>
   </div>
 </div>
@@ -515,6 +480,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       </div>
       <div class="f"><label>Observaciones finales</label><textarea id="r-obs-fin" placeholder="Notas de cierre de recepción..."></textarea></div>
       <button class="btn-save" id="btn-r" onclick="saveR()">Guardar y enviar a Sheets</button>
+      <button class="btn-clear" onclick="resetScr('recepcion')">Limpiar campos</button>
     </div>
   </div>
 </div>
@@ -610,16 +576,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       </div>
       <div class="row2">
         <div class="f"><label>Fecha de cierre</label><input type="date" id="i-fcierre"></div>
-        <div class="f"><label>Diagnóstico presuntivo</label><input type="text" id="i-diag" placeholder="ej. BRD, diarrea, garrapata"></div>
+        <div class="f"><label>Diagnóstico presuntivo</label><input type="text" id="i-diag" placeholder="ej. BRD, diarrea"></div>
       </div>
       <div class="f"><label>Responsable de cierre</label><input type="text" id="i-rcierre" placeholder="Nombre"></div>
       <div class="f"><label>Observaciones finales</label><textarea id="i-obs-fin" placeholder="Notas de cierre del caso..."></textarea></div>
       <button class="btn-save" id="btn-i" onclick="saveI()">Guardar y enviar a Sheets</button>
+      <button class="btn-clear" onclick="resetScr('individual')">Limpiar campos</button>
     </div>
   </div>
 </div>
 
-</div><!-- end .app -->
+</div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -694,7 +661,8 @@ function retryPending(){
 function updatePending(){
   var tag=document.getElementById('pending-tag'),ob=document.getElementById('offline-banner');
   if(pending.length){
-    tag.style.display='inline-block';tag.textContent=pending.length+' pendiente'+(pending.length>1?'s':'');
+    tag.style.display='inline-block';
+    tag.textContent=pending.length+' pendiente'+(pending.length>1?'s':'');
     ob.style.display='block';setSyncState('pending');
   } else {
     tag.style.display='none';ob.style.display='none';
@@ -734,9 +702,7 @@ function calcScore(){
   var bar=document.getElementById('sbar'),num=document.getElementById('snum'),
       verd=document.getElementById('sverdict'),grid=document.getElementById('sgrid');
   if(pct===null){num.textContent='—';verd.style.display='none';bar.style.width='0%';grid.style.display='none';return;}
-  num.textContent=pct+' / 100';
-  verd.style.display='inline-block';
-  grid.style.display='grid';
+  num.textContent=pct+' / 100';verd.style.display='inline-block';grid.style.display='grid';
   if(pct>=70){bar.style.background='#639922';verd.textContent='Compra favorable';verd.className='score-verdict sv-v';}
   else if(pct>=45){bar.style.background='#BA7517';verd.textContent='Compra con cautela';verd.className='score-verdict sv-a';}
   else{bar.style.background='#A32D2D';verd.textContent='Riesgo elevado';verd.className='score-verdict sv-r';}
@@ -863,7 +829,6 @@ function exportCSV(){
   toast('CSV exportado');
 }
 
-// Init
 var td=new Date().toISOString().slice(0,10);
 ['p-fecha','r-fecha','i-fecha'].forEach(function(id){var e=document.getElementById(id);if(e)e.value=td;});
 updateCounts();renderHome();updatePending();
